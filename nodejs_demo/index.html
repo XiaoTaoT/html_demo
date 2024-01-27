@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Proxy Image</title>
+</head>
+<body>
+<progress id="p" style="height: 100px"></progress>
+<img width="100" height="100"
+     crossorigin="use-credentials"
+     src="https://172.20.23.68:7002/gateway/verifyCode?r=0.3864896625425638&verCode=verCode0.6642853086658478">
+</body>
+<script>
+    var progressBar = document.getElementById("p"),
+        client = new XMLHttpRequest()
+    client.open("GET", "magical-unicorns")
+    client.onprogress = function (pe) {
+        if (pe.lengthComputable) {
+            progressBar.max = pe.total
+            progressBar.value = pe.loaded
+        }
+    }
+    client.onloadend = function (pe) {
+        progressBar.value = pe.loaded
+    }
+    client.send()
+</script>
+
+</html>
